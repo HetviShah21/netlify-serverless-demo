@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Serverless Computing</title>
+</head>
+<body>
+    <h1>Welcome to Serverless Computing!</h1>
+    <p>Practical 6 - Netlify Functions</p>
+    <button onclick="getMessage()">Call Serverless Function</button>
+    <p id="result"></p>
+
+    <script>
+        async function getMessage() {
+            const result = document.getElementById("result");
+            result.textContent = "Loading...";
+            try {
+                const response = await fetch("/.netlify/functions/hello");
+                const data = await response.json();
+                result.textContent = data.message;
+            } catch (error) {
+                result.textContent = "Unable to call function.";
+            }
+        }
+    </script>
+</body>
+</html>
